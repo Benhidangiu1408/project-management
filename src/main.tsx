@@ -1,19 +1,31 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Layout from "./components/Layout/Layout";
 import Login from "./pages/Login/Login";
 
-const queryClient = new QueryClient();
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      {path:'/',
+        element: <Login/>,
+      },
+      
+    ],
+  },
+])
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <Login />
-      <ReactQueryDevtools />
-    </QueryClientProvider>
-  </React.StrictMode>
-);
+
+const rootElement = document.getElementById("root");
+
+if (rootElement) {
+  createRoot(rootElement).render(
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>
+  );
+} else {
+  console.error("Chet chua bae");
+}

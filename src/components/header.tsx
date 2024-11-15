@@ -1,11 +1,12 @@
-import React from "react";
+// Header.js
+import React from 'react';
 
-function Header() {
-    return (
-      <div>
-        Hello
-      </div>
-    )
-  }
-  
-  export default Header
+const Header = () => {
+  return (
+    <header className="bg-blue-600 text-white shadow-md">
+      
+    </header>
+  );
+};
+
+export default Header;
