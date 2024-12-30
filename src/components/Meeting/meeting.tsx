@@ -28,10 +28,7 @@ const Meeting: React.FC<{ meetings?: MeetingProps[] }> = ({ meetings = [] }) => 
           const meetingEnd = new Date(`${meeting.date}T${meeting.endTime}`);
 
           // Return true for upcoming or ongoing meetings
-          return (
-            meetingStart > now ||
-            (meeting.date === today && now < meetingEnd)
-          );
+          return meetingStart > now || (meeting.date === today && now < meetingEnd);
         })
         .sort((a, b) => {
           const dateA = new Date(`${a.date}T${a.startTime}`).getTime();
@@ -54,10 +51,7 @@ const Meeting: React.FC<{ meetings?: MeetingProps[] }> = ({ meetings = [] }) => 
     const pastMeetings = meetings
       .filter((meeting) => {
         const meetingEnd = new Date(`${meeting.date}T${meeting.endTime}`);
-        return (
-          new Date(meeting.date) < new Date(today) ||
-          (meeting.date === today && meetingEnd < now)
-        );
+        return new Date(meeting.date) < new Date(today) || (meeting.date === today && meetingEnd < now);
       })
       .sort((a, b) => {
         const dateA = new Date(`${a.date}T${a.endTime}`).getTime();
@@ -70,19 +64,14 @@ const Meeting: React.FC<{ meetings?: MeetingProps[] }> = ({ meetings = [] }) => 
   };
 
   return (
-    <div className="flex flex-col px-8 pb-14 w-full bg-rose-50 max-md:px-5 max-md:max-w-full space-y-[10px]">
+    <div className="flex flex-col px-8 pb-14 w-full bg-rose-50 max-md:px-5 max-md:max-w-full">
       {/* Header */}
-      <div className="relative w-[200px] -top-6 px-4 py-2 bg-[#81BFB7] text-white font-bold text-base">
-        Meeting
-      </div>
+      <div className="relative w-[200px] -top-6 px-4 py-2 bg-[#81BFB7] text-white font-bold text-base">Meeting</div>
 
       {/* Upcoming Meetings */}
       {upcomingMeetings.length > 0 ? (
         upcomingMeetings.map((meeting, index) => (
-          <div
-            key={index}
-            className="w-[400px] bg-white p-4 rounded-lg shadow-md border border-gray-300"
-          >
+          <div key={index} className="w-[400px] bg-white p-4 rounded-lg shadow-md border border-gray-300">
             <div className="flex items-center justify-between mb-4">
               <h4 className="font-bold text-xl text-black">Next meeting</h4>
               <div className="flex items-center gap-2">
@@ -109,24 +98,13 @@ const Meeting: React.FC<{ meetings?: MeetingProps[] }> = ({ meetings = [] }) => 
       )}
 
       {/* Buttons */}
-      <button
-        onClick={handleViewPreviousMeetings}
-        className="w-[400px] h-10 bg-[#f3a2be]/20 py-2 mb-2 text-sm font-bold text-[#e97c98] border-none rounded"
-      >
+      <button onClick={handleViewPreviousMeetings} className="w-[400px] h-10 bg-[#f3a2be]/20 py-2 mb-2 text-sm font-bold text-[#e97c98] border-none rounded">
         View previous meeting
       </button>
 
-      {showLastMeetings && (
-        <LastMeeting
-          previousMeetings={previousMeetings}
-          onClose={() => setShowLastMeetings(false)}
-        />
-      )}
+      {showLastMeetings && <LastMeeting previousMeetings={previousMeetings} onClose={() => setShowLastMeetings(false)} />}
 
-      <button
-        onClick={() => setShowAddMeeting(true)}
-        className="w-[400px] h-10 bg-[#f3a2be]/20 py-2 text-sm font-bold text-[#e97c98] border-none rounded"
-      >
+      <button onClick={() => setShowAddMeeting(true)} className="w-[400px] h-10 bg-[#f3a2be]/20 py-2 text-sm font-bold text-[#e97c98] border-none rounded">
         Add meeting
       </button>
 

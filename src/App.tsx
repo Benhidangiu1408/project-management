@@ -1,14 +1,17 @@
-import AddBlock from "./components/ui/AddBlock";
-import StoryBoard from "./pages/Stage Page/StoryBoard";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Homepage from "./pages/Homepage";
+import Stage from "./pages/Stage Page/StagePage";
+import Project from "./pages/Projectpage";
 
 function App() {
     return (
-        <div>
-            <div className="flex space-x-6 m-5 p-10 ">
-                <AddBlock color={"green"} name={"PROJECT"} />
-                <AddBlock color={"pink"} name={"STAGE"} />
-            </div>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/Stage" element={<Stage />} />
+                <Route path="/Project" element={<Project />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
