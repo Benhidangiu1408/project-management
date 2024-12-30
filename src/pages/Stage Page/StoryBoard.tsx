@@ -1,35 +1,18 @@
 import React from "react";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import StoryBoardTable from "./StoryBoardTable";
 
 const StoryBoard = () => {
   return (
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell className="font-medium">INV001</TableCell>
-          <TableCell>Paid</TableCell>
-          <TableCell>Credit Card</TableCell>
-          <TableCell className="text-right">$250.00</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+    <div>
+      <div className="flex  w-fit h-fit font-medium bg-teal-50 relative ...">
+        <div className="absolute -top-5 left-10 w-40  bg-pink-300 text-white...">
+          <p className="text-white pl-3 text-left">Story Board</p>
+        </div>
+        <div className="w-full mt-8 mb-8 relative flex place-content-center items-center  ">
+          <StoryBoardTable />
+        </div>
+      </div>
+    </div>
   );
 };
 
