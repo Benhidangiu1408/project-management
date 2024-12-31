@@ -1,7 +1,7 @@
 import moment from "moment";
 import React, { useState } from "react";
 
-function GanttChart() {
+function GanttChart({ color }: any) {
   const tasks = [
     { name: "Smart Printing", start: "2024-10-01", end: "2024-10-25" },
     { name: "Software", start: "2024-10-05", end: "2024-10-16" },
@@ -15,7 +15,7 @@ function GanttChart() {
   const currentDate = time.date(); // Highlighted date
 
   return (
-    <div className="p-4 bg-pink100 w-fit">
+    <div className={`p-4 bg-${color}100 w-fit`}>
       {/* Header Section */}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold text-gray-800">{time.format("MMMM YYYY")}</h2>
@@ -59,9 +59,9 @@ function GanttChart() {
             key={day}
             className={`flex-shrink-0 flex justify-center items-center text-sm w-8 ${
               day === currentDate
-                ? "text-white bg-pink300 rounded-full"
+                ? `text-white bg-${color}300 rounded-full`
                 : time.clone().set("date", day).isoWeekday() === 7 || time.clone().set("date", day).isoWeekday() === 6
-                ? "text-black bg-pink200 rounded-full"
+                ? `text-black bg-${color}200 rounded-full`
                 : "text-gray-800"
             }`}
           >
@@ -85,7 +85,7 @@ function GanttChart() {
 
               {/* Gantt Bar */}
               <div
-                className="relative h-6 bg-pink300 rounded-full"
+                className={`relative h-6 bg-${color}300 rounded-full`}
                 style={{
                   marginLeft: `${(startTime.date() - 1) * 2}rem`, // Each day width = 2rem
                   width: `${(endTime.date() - startTime.date() + 1) * 2}rem`,

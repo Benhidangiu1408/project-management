@@ -1,5 +1,6 @@
 import TodayMeeting from "@/components/Meeting/MeetingList";
 import GanttChart from "../components/ui/BarClalendar";
+import ProjectBlock from "@/components/ui/ProjectList";
 
 function Homepage() {
   const meetings = [
@@ -40,8 +41,13 @@ function Homepage() {
 
   return (
     <div>
-      <TodayMeeting meetings={meetings} />
-      <GanttChart />
+      <div className="flex">
+        <TodayMeeting meetings={meetings} />
+      </div>
+      <div className="flex m-8 justify-between">
+        <ProjectBlock />
+        <GanttChart color="pink" />
+      </div>
     </div>
   );
 }
