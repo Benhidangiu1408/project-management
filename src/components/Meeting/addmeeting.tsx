@@ -1,15 +1,9 @@
 import React, { useState } from "react";
+import { MeetingProps } from "./meetingTypes";
 
 interface AddMeetingProps {
   onClose: () => void; // Hàm để đóng AddMeeting
-  onAddMeeting: (meeting: {
-    date: string;
-    startTime: string;
-    endTime: string;
-    linkMeeting: string;
-    linkMeetingNote: string;
-    projectName: string;
-  }) => void; // Hàm để thêm cuộc họp mới
+  onAddMeeting: (meeting: MeetingProps) => void; // Hàm để thêm cuộc họp mới
 }
 
 const AddMeeting: React.FC<AddMeetingProps> = ({ onClose, onAddMeeting }) => {

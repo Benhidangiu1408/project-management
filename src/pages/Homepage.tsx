@@ -1,8 +1,25 @@
 import TodayMeeting from "@/components/Meeting/MeetingList";
 import GanttChart from "../components/ui/BarClalendar";
 import ProjectBlock from "@/components/ui/ProjectList";
+import TodayTaskDeadline from "@/components/Task/todaytaskdeadline";
+import ToDoList from "@/components/Task/todolist";
+
 
 function Homepage() {
+  const tasks = [
+  {
+    date: "2024-12-31",
+    endTime: "15:30",
+    projectName: "Project A",
+    taskName: "Finish documentation",
+  },
+  {
+    date: "2024-12-31",
+    endTime: "17:00",
+    projectName: "Project B",
+    taskName: "Review pull request",
+  },
+];
   const meetings = [
     {
       date: "2024-12-02",
@@ -40,14 +57,18 @@ function Homepage() {
   ];
 
   return (
-    <div>
-      <div className="flex">
-        <TodayMeeting meetings={meetings} />
+
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+      <div className="flex flex-row m-8 justify-between">
+      <TodayMeeting meetings={meetings} />
+      <TodayTaskDeadline tasks={tasks} />
+      <ToDoList />
       </div>
       <div className="flex m-8 justify-between">
         <ProjectBlock />
         <GanttChart color="pink" />
       </div>
+
     </div>
   );
 }
