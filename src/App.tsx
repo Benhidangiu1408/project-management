@@ -1,9 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
+import StoryBoard from "./pages/Stage Page/StoryBoard";
+
+import { Checkbox } from "@radix-ui/react-checkbox";
+import StoryPointTable from "./pages/Stage Page/StoryPointTable";
+import {  CustomCalendar } from "./pages/Stage Page/CalenUI";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <div className="App">
@@ -16,6 +21,12 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <StoryPointTable />
+      <br />
+      <StoryBoard />
+      <br/>
+      {/* <calen */}
+      <CustomCalendar/>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -28,7 +39,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
