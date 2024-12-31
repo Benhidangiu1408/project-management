@@ -58,7 +58,7 @@ function Homepage() {
 
   return (
 
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+    <div className="flex flex-col items-center justify-center bg-gray-100">
       <div className="flex flex-row m-8 justify-between">
       <TodayMeeting meetings={meetings} />
       <TodayTaskDeadline tasks={tasks} />
