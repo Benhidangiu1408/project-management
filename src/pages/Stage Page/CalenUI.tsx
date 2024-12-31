@@ -109,25 +109,14 @@ import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
 
 // Example task data
 const tasks: { [key: string]: string[] } = {
-  "2024-01-01": ["New Year's Celebration","Project Deadline","Project Deadline","Project Deadline","Project Deadline"],
-  "2024-01-15": ["Project Deadline","New Year's Celebration"],
+  "2024-01-01": ["New Year's Celebration", "Project Deadline", "Project Deadline", "Project Deadline", "Project Deadline"],
+  "2024-01-15": ["Project Deadline", "New Year's Celebration"],
   "2024-02-14": ["Valentine's Day Dinner"],
 };
 
@@ -169,38 +158,26 @@ export const CustomCalendar: React.FC = () => {
 
   // Navigate to the previous month
   const handlePrevMonth = () => {
-    setCurrentDate(
-      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
-    );
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
   };
 
   // Navigate to the next month
   const handleNextMonth = () => {
-    setCurrentDate(
-      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
-    );
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
   };
 
   return (
     <>
-      <div className="flex ">
+      <div className="flex justify-start w-[1000px]">
         <div className="mr-auto py-2">
           <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                role="combobox"
-                aria-expanded={open}
-                className="w-[200px] justify-between border border-3 border-teal-500 hover:border-teal-500 bg-slate-100"
-              >
-                {value
-                  ? frameworks.find((framework) => framework.value === value)
-                      ?.label
-                  : "Select year..."}
+              <Button variant="default" role="combobox" aria-expanded={open} className="w-[200px] justify-between border border-green200 bg-green100">
+                {value ? frameworks.find((framework) => framework.value === value)?.label : "Select year..."}
                 <ChevronsUpDown className="opacity-50 text-teal-500" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[200px] p-0 ">
+            <PopoverContent className="w-[200px] p-0 bg-green200">
               <Command>
                 <CommandInput placeholder="Search year..." className="h-9 " />
                 <CommandList>
@@ -213,20 +190,11 @@ export const CustomCalendar: React.FC = () => {
                         onSelect={(currentValue) => {
                           setValue(currentValue === value ? "" : currentValue);
                           setOpen(false);
-                          handleYearChange(
-                            currentValue === value ? "" : currentValue
-                          );
+                          handleYearChange(currentValue === value ? "" : currentValue);
                         }}
                       >
                         {framework.label}
-                        <Check
-                          className={cn(
-                            "ml-auto",
-                            value === framework.value
-                              ? "opacity-100"
-                              : "opacity-0"
-                          )}
-                        />
+                        <Check className={cn("ml-auto", value === framework.value ? "opacity-100" : "opacity-0")} />
                       </CommandItem>
                     ))}
                   </CommandGroup>
@@ -235,26 +203,20 @@ export const CustomCalendar: React.FC = () => {
             </PopoverContent>
           </Popover>
         </div>
-        <div className=" items-center justify-center absolute ml-[450px] w-[300px] h-[50px] mb-35 bg-teal-300 text-white...">
+        <div className="absolute left-[600px] items-center justify-center w-[300px] h-[50px] mb-35 bg-green300 text-white...">
           <p className="text-white text-center items-center justify-center text-3xl pt-1">Calendar</p>
         </div>
       </div>
-      <div className="p-4 bg-rose-100">
+      <div className="p-4 bg-pink100">
         {/* Calendar Header */}
         <div className="flex items-center justify-between mb-4">
-          <button
-            onClick={handlePrevMonth}
-            className="px-4 py-2 bg-slate-100 rounded-md hover:bg-slate-200"
-          >
+          <button onClick={handlePrevMonth} className="px-4 py-2 bg-slate-100 rounded-md hover:bg-slate-200">
             Previous
           </button>
           <h2 className="text-lg font-semibold">
             {currentDate.toLocaleString("default", { month: "long" })} {year}
           </h2>
-          <button
-            onClick={handleNextMonth}
-            className="px-4 py-2 bg-slate-100 rounded-md hover:bg-slate-200"
-          >
+          <button onClick={handleNextMonth} className="px-4 py-2 bg-slate-100 rounded-md hover:bg-slate-200">
             Next
           </button>
         </div>
@@ -262,10 +224,7 @@ export const CustomCalendar: React.FC = () => {
         {/* Calendar Grid */}
         <div className="grid grid-cols-7 gap-2">
           {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-            <div
-              key={day}
-              className="text-center font-bold text-black bg-slate-100 mb-2 "
-            >
+            <div key={day} className="text-center font-bold text-black bg-slate-100 mb-2 ">
               {day}
             </div>
           ))}
@@ -279,22 +238,18 @@ export const CustomCalendar: React.FC = () => {
                 key={formattedDate}
                 onClick={() => setSelectedDate(day)}
                 className={`relative flex flex-col items-center justify-center p-2 w-[145px] min-h-[120px] border rounded-md   ${
-                  taskList.length > 0
-                    ? " text-blue-700 border-violet-950"
-                    : " border-violet-950"
-                } ${
-                  selectedDate?.toDateString() === day.toDateString()
-                    ? "ring-2 ring-orange-400 "
-                    : ""
-                } cursor-pointer`}
+                  taskList.length > 0 ? " text-blue-700 border-violet-950" : " border-violet-950"
+                } ${selectedDate?.toDateString() === day.toDateString() ? "ring-2 ring-orange-400 " : ""} cursor-pointer`}
               >
-                <span className=" absolute top-2 left-2 text-white font-bold border rounded-full inline-block w-7 bg-rose-300 ">
-                  {day.getDate()}
-                </span>
+                <span className="text-center absolute top-2 left-2 text-white font-bold border rounded-full inline-block w-7 bg-pink300 ">{day.getDate()}</span>
                 {taskList.length > 0 && (
                   <ul className="mt-1 text-xs text-center text-black">
                     {taskList.map((task, index) => (
-                      <li key={index}><Badge className={`bg-white text-black truncate whitespace-nowrap  overflow-hidden w-[130px] block mb-2 ${index===0? "mt-7":""}`}>{task}</Badge></li>
+                      <li key={index}>
+                        <Badge className={`bg-white text-black truncate whitespace-nowrap  overflow-hidden w-[130px] block mb-2 ${index === 0 ? "mt-7" : ""}`}>
+                          {task}
+                        </Badge>
+                      </li>
                     ))}
                   </ul>
                 )}
